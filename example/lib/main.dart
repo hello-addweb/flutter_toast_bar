@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toast_bar/flutter_toast_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,14 +36,41 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text("Toast Message Bar"),
       ),
-      body: const SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            children: [],
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                FlutterToastBar.showToast(
+                    context: context,
+                    message: 'Show Snackbar Success',
+                    backgroundColor: Colors.green);
+              },
+              child: const Text("Show Snackbar: Success"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                FlutterToastBar.showToast(
+                    context: context,
+                    message: 'Show Snackbar Error',
+                    backgroundColor: Colors.red);
+              },
+              child: const Text("Show Snackbar: Error"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                FlutterToastBar.showToast(
+                    context: context, message: 'Show Snackbar');
+              },
+              child: const Text("Show Snackbar"),
+            ),
+          ],
         ),
-      ),
+      )
     );
   }
 }
