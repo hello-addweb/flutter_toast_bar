@@ -67,49 +67,45 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    String password = "addweb@123";
-    String password2 = 'Add@123';
-    bool isValidPassword = PasswordValidator.validatePassword(password);
-    bool isValidPassword2 = PasswordValidator.validatePassword(password2);
-
-    log("isValidPassword  $isValidPassword");
-    log("isValidPassword22  $isValidPassword2");
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Password Validation"),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        appBar: AppBar(
+          title: const Text("Toast Message Bar"),
+        ),
+        body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("$isValidPassword"),
-              TextFormField(
-                validator: (value) {
-                  /// your logic
-                  if (value!.isEmpty) {
-                    return "Please Enter Password";
-                  } else if (PasswordValidator.validatePassword(value)) {
-                    //return "Please Enter Valid Password";
-                    return "Password should be between 8 to 15 characters and should contain atleast one uppercase, one lowercase ,one number and one special character.";
-                  }
-                  return null;
+              ElevatedButton(
+                onPressed: () {
+                  FlutterToastBar.showToast(
+                      context: context,
+                      message: 'Show Snackbar Success',
+                      backgroundColor: Colors.green);
                 },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(),
-                  errorBorder: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(),
-                  disabledBorder: OutlineInputBorder(),
-                  focusedErrorBorder: OutlineInputBorder(),
-                  hintText: 'Enter Password',
-                ),
+                child: const Text("Show Snackbar: Success"),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  FlutterToastBar.showToast(
+                      context: context,
+                      message: 'Show Snackbar Error',
+                      backgroundColor: Colors.red);
+                },
+                child: const Text("Show Snackbar: Error"),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  FlutterToastBar.showToast(
+                      context: context, message: 'Show Snackbar');
+                },
+                child: const Text("Show Snackbar"),
               ),
             ],
           ),
-        ),
-      ),
+        )
     );
   }
 }
@@ -120,6 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 #### Basic
 
-| Parameter | Default | Description          | Required |
-|-----------|:--------|:---------------------|:--------:|
-| password  | -       | User Input password. |   True   |
+| Parameter       | Default       | Description      | Required |
+|-----------------|:--------------|:-----------------|:--------:|
+| context         | -             | build context.   |   True   |
+| message         | -             | toast message.   |   True   |
+| backgroundColor | Colors.black, | background color |  false   |
